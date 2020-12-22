@@ -1,0 +1,52 @@
+$label-width: 6em;
+.form-page.form {
+  width: 800px;
+  margin: 0 auto;
+  padding-top: 30px;
+  .select {
+    width: 200px;
+  }
+  .ant-form-item-label {
+    width: $label-width;
+  }
+  .btn-add {
+    margin-left: $label-width;
+  }
+  .request-params {
+    width: $label-width;
+    text-align: right;
+    margin-bottom: 10px;
+  }
+  .add-box {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px dashed #ccc;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    .ant-space {
+      flex-basis: 260px;
+      &.checkbox {
+        flex-basis: 260px;
+      }
+      .ant-space-item {
+        width: 100%;
+      }
+    }
+    .btn-delete {
+      cursor: pointer;
+      color: #999;
+      &:hover {
+        color: #333;
+      }
+    }
+  }
+  .btn {
+    margin-left: $label-width;
+    button {
+      width: 80px;
+    }
+    button + button {
+      margin-left: 20px;
+    }
+  }
+}

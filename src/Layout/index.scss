@@ -1,0 +1,26 @@
+.header {
+  background: rgba($color: #000000, $alpha: 0.7);
+  .container {
+    display: flex;
+    width: 1200px;
+    height: 60px;
+    margin: 0 auto;
+    background: #777;
+    align-items: center;
+    color: #fff;
+    .logo {
+      width: 200px;
+    }
+    .nav {
+      flex: 1;
+    }
+    .operate {
+
+      > button {
+        color: #fff;
+        font-size: 14px;
+        font-weight: bold;
+      }
+    }
+  }
+}

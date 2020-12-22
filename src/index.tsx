@@ -1,12 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom'
+import { notification } from 'antd';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+notification.config({
+  duration: 3
+})
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
