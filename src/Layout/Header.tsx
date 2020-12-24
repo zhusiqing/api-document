@@ -1,14 +1,16 @@
 import { UserInfoContext } from '@/context';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Dropdown, Menu, notification, Button } from 'antd';
-import { useHistory } from 'react-router-dom';
+import { DownOutlined } from '@ant-design/icons';
+import { useHistory, NavLink } from 'react-router-dom';
 import { logout } from '@services/user';
 export default function Header () {
   const userInfo = useContext(UserInfoContext);
   const history = useHistory();
+  const [visible, updateVisible] = useState(false);
   const isLogin = userInfo.username;
   async function fetchLogout() {
-    const { success } = await logout()
+    const { success } = await logout();
     if (success) {
       notification.success({
         message: '退出登录成功'
@@ -18,7 +20,10 @@ export default function Header () {
   };
   function toLoginPage() {
     history.push('/login');
-  }
+  };
+  function onVisibleChange(isShow:boolean) {
+    updateVisible(isShow);
+  };
   const menu = (
     <Menu>
       <Menu.Item>
@@ -29,11 +34,24 @@ export default function Header () {
   return (
     <header className="header">
       <div className="container">
-        <div className="logo">1</div>
-        <div className="nav">1</div>
+        <div className="logo"></div>
+        <ul className="nav">
+          <li>
+            <NavLink to="/" exact>首页</NavLink>
+          </li>
+          <li>
+            <NavLink to="/document">文档</NavLink>
+          </li>
+          <li>
+            <NavLink to="/about">关于</NavLink>
+          </li>
+        </ul>
         <div className="operate">
-          <Dropdown overlay={menu} arrow>
-            <Button type="text">{userInfo.username}</Button>
+          <Dropdown overlay={menu} arrow onVisibleChange={onVisibleChange}>
+            <Button type="text">
+              {userInfo.username}
+              <DownOutlined className="icon" rotate={ visible ? 180 : 0 } />
+            </Button>
           </Dropdown>
         </div>
       </div>

@@ -1,27 +1,15 @@
-import { Form, Input, Button, Select, Space, Checkbox } from 'antd';
+import { Form, Input, Button, Select, Space, Checkbox, notification } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import * as React from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import {
+  getTagList,
+  putDocument,
+  InterfaceTag,
+  InterfaceDocument,
+  InterfaceRequestList
+} from '@services/document';
 import 'antd/dist/antd.min.css';
 import './index.scss';
-
-interface InterfaceFormValues {
-  title: string
-  url: string
-  method: string
-}
-
-const { Item, List } = Form;
-const { Option } = Select;
-
-const ruleRequired = (message?: string): object => ({ required: true, message });
-const defaultParam = {
-  name: '',
-  type: '',
-  require: false,
-  defaultValue: '',
-  content: ''
-};
 
 interface InterfaceRequestItemProps {
   field: {
@@ -33,6 +21,17 @@ interface InterfaceRequestItemProps {
   remove: (key: number) => void
 }
 
+const { Item, List } = Form;
+const { Option } = Select;
+
+const ruleRequired = (message?: string): object => ({ required: true, message });
+const defaultParam: InterfaceRequestList = {
+  title: '',
+  type: '',
+  require: false,
+  defaultValue: '',
+  content: ''
+};
 
 const RequestItem = (props: InterfaceRequestItemProps) => {
   const { field, key, remove } = props
@@ -133,22 +132,39 @@ const RequestList: React.FC = () => {
   )
 }
 
-const FormComponent: React.FC = () => {
+const FormComponent = () => {
+  const initTagList: InterfaceTag[] = []
   const [form] = Form.useForm();
-  const onFinish = (values:InterfaceFormValues) => {
-    console.log('onFinish', values);
-    axios.put('/api/document', values).then(({ data, status }) => {
-      if (status === 200) {
-        const { success, data: res } = data;
-        if (success) {
-          console.log(res);
-        };
-      };
-    })
-  };
+  const [tagList, updateTagList] = useState(initTagList);
+
   const onReset = () => {
     form.resetFields();
   };
+  const onFinish = async (values:InterfaceDocument) => {
+    console.log('onFinish', values);
+    const { success } = await putDocument(values);
+    if (success) {
+      notification.success({
+        message: '提交成功'
+      });
+      onReset()
+    };
+  };
+  const fetchTagList = async () => {
+    const params = {
+      page: 1,
+      size: 50
+    }
+    const { success, data } = await getTagList(params);
+    if (success) {
+      const { list = [] } = data
+      updateTagList(list);
+    }
+  };
+
+  useEffect(() => {
+    fetchTagList();
+  }, []);
 
   return (
     <Form className="form form-page" form={form} onFinish={onFinish}>
@@ -164,6 +180,11 @@ const FormComponent: React.FC = () => {
           <Option value={2}>POST</Option>
           <Option value={3}>PUT</Option>
           <Option value={4}>DELETE</Option>
+        </Select>
+      </Item>
+      <Item name="tag" label="关联版本" rules={[ruleRequired('请求方式不可为空')]}>
+        <Select className="select" placeholder="请选择一种版本">
+          { tagList.map((el) => (<Option key={el._id} value={el._id}>{el.name}</Option>)) }
         </Select>
       </Item>
       <RequestList></RequestList>

@@ -22,7 +22,7 @@ export const post = (url: string, data: object, config?: object): Promise<Interf
   ...config
 });
 
-export const del = (url: string, data: object, config?: object): Promise<InterfaceResponseData> => http({
+export const del = (url: string, data?: object, config?: object): Promise<InterfaceResponseData> => http({
   url,
   method: 'delete',
   params: data,

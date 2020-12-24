@@ -16,4 +16,3 @@ export async function logout() {
 export async function getUserInfo() {
   return get('/api/user-info');
 };
-

@@ -1,0 +1,35 @@
+@mixin page {
+  margin-top: 20px;
+  border-radius: 5px;
+  background: #ffffff;
+  min-height: 300px;
+  padding: 40px;
+  box-sizing: content-box;
+}
+
+@import '~@/assets/scss/markdown.scss';
+.markdown-content pre.hljs {
+  position: relative;
+  padding-top: 28px;
+  > .lang {
+    position: absolute;
+    color: #98c379;
+    user-select: none;
+    right: 60px;
+    top: 4px;
+  }
+  > .copy {
+    position: absolute;
+    color: #d19a66;
+    cursor: pointer;
+    right: 20px;
+    top: 4px;
+    &:hover {
+      color: #ffffff;
+    }
+  }
+}
+
+.document-detail-page {
+  @include page;
+}

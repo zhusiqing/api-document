@@ -5,9 +5,11 @@ import './index.scss';
 
 const LayoutComponent = (props: PropsWithChildren<{}> ) => {
   return (
-    <div>
+    <div className="layout">
       <Header></Header>
-      {props.children}
+      <section className="content">
+        {props.children}
+      </section>
       <Footer></Footer>
     </div>
   )

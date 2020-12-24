@@ -1,46 +1,61 @@
-import React, { PropsWithChildren } from 'react';
-import { Route, Switch, Redirect, RouteProps } from 'react-router-dom';
-import NotFound from './pages/NotFound';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import FormPage from './pages/Form';
+import React, { Suspense, lazy } from 'react';
+import { Route, Switch, Redirect, RouteComponentProps } from 'react-router-dom';
+import NotFound from '@/pages/NotFound';
+import About from '@/pages/About';
+import Home from '@/pages/Home';
+import Login from '@/pages/Login';
+import FormPage from '@/pages/Form';
 import Layout from '@/Layout';
 
-const LayoutComponent = (props: PropsWithChildren<RouteProps>) => (
-  <Layout>
-    { props.children }
-  </Layout>
-)
-const RenderComponent = (page:string) => (props: RouteProps) => {
+const Document = lazy(() => import('@/pages/Document'));
+const DocumentDetail = lazy(() => import('@/pages/Document/Detail'));
+
+const RenderComponent = (page:string) => (props: RouteComponentProps<any>) => {
   let C
   switch (page) {
     case 'Home':
       C = Home
       break;
+    case 'Document':
+      C = Document
+      break;
+    case 'DocumentDetail':
+      C = DocumentDetail;
+      break;
     case 'FormPage':
       C = FormPage
+      break;
+    case 'About':
+      C = About
       break;
     default:
       C = NotFound
       break;
   }
   return (
-    <LayoutComponent { ...props }>
-      <C/>
-    </LayoutComponent>
+    <Layout { ...props }>
+      <C { ...props }/>
+    </Layout>
   )
 }
 
 const Router = () => {
   return (
     <React.Fragment>
-      <Switch>
-        <Route exact path="/" render={ RenderComponent('Home') } />
-        <Route path="/document/edit" render={ RenderComponent('FormPage') } />
-        <Route path="/login" component={Login} />
-        <Route path="/404" component={NotFound}/>
-        <Redirect to="/404" />
-      </Switch>
+      <Suspense fallback={<div>loading...</div>}>
+        <Switch>
+          <Route exact path="/" render={ RenderComponent('Home') } />
+          <Route exact path="/document" render={ RenderComponent('Document') } />
+          <Route exact path="/document/edit" render={ RenderComponent('FormPage') } />
+          <Route exact path="/document/:id" render={ RenderComponent('DocumentDetail') } />
+          <Route path="/about" render={ RenderComponent('About') } />
+
+          <Route path="/login" component={Login} />
+          <Route path="/404" component={NotFound}/>
+          <Redirect to="/404" />
+        </Switch>
+      </Suspense>
+
     </React.Fragment>
   );
 };
