@@ -51,7 +51,7 @@ const transformMarkdown = (data: InterfaceMarkdownData) :string => {
   return str;
 }
 
-const DocumentDetail = ({ match }: RouteComponentProps<InterfaceProps>) => {
+const DocumentDetail: React.FC<RouteComponentProps<InterfaceProps>> = ({ match }) => {
   const [detail, updateDetail] = useState('');
   const id = match.params?.id;
   const fetchDetail = async () => {

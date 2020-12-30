@@ -3,9 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { getTagList, InterfacePage, InterfaceTag } from '@services/document';
 import './index.scss';
 
-const Document = () => {
-  const initTagList: InterfaceTag[] = [];
-  const [tagList, updateTagList] = useState(initTagList);
+const Document: React.FC = () => {
+  const [tagList, updateTagList] = useState<InterfaceTag[]>([]);
   const history = useHistory()
 
   const fetchTagList = async (params?:InterfacePage) => {

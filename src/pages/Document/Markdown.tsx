@@ -24,7 +24,7 @@ const md = new MD({
 
 
 
-const MarkdownComponent = (props: InterfaceProp) => {
+const MarkdownComponent: React.FC<InterfaceProp> = (props) => {
   const [detail, updateDetail] = useState('')
   useEffect(() => {
     if (props.value) {

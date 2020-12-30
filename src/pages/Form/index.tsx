@@ -133,9 +133,8 @@ const RequestList: React.FC = () => {
 }
 
 const FormComponent = () => {
-  const initTagList: InterfaceTag[] = []
   const [form] = Form.useForm();
-  const [tagList, updateTagList] = useState(initTagList);
+  const [tagList, updateTagList] = useState<InterfaceTag[]>([]);
 
   const onReset = () => {
     form.resetFields();
