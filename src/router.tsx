@@ -26,7 +26,7 @@ const routerQueue: Set<InterfaceRouteQueue> = new Set();
 //   }
 // }
 // TODO: 所有组件增加路由钩子
-const AsyncComponent = (Component: Promise<{default: (c: any) => JSX.Element}>, isLayout: boolean = true) => {
+  const AsyncComponent = (Component: Promise<any>, isLayout: boolean = true) => {
   function dispatch(type:string) {
     routerQueue.forEach(el => {
       if (el.type === type) {
@@ -54,9 +54,9 @@ const AsyncComponent = (Component: Promise<{default: (c: any) => JSX.Element}>, 
     )
   }
 }
-const Document = AsyncComponent(import('@/pages/Document'));
-const DocumentDetail = AsyncComponent(import('@/pages/Document/Detail'));
-const FormPage = AsyncComponent(import('@/pages/Form'));
+const Document = AsyncComponent(import('./pages/Document'));
+const DocumentDetail = AsyncComponent(import('./pages/Document/Detail'));
+const FormPage = AsyncComponent(import('./pages/Form'));
 
 const LayoutComponent = (Component: FunctionComponent<any>) => (props: RouteComponentProps<any>) => {
   return (
