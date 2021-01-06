@@ -54,7 +54,7 @@ const transformMarkdown = (data: InterfaceMarkdownData) :string => {
 const DocumentDetail: React.FC<RouteComponentProps<InterfaceProps>> = ({ match }) => {
   const [detail, updateDetail] = useState('');
   const id = match.params?.id;
-  const fetchDetail = async () => {
+  const fetchDetail = async (id: string) => {
     const params = {
       _id: id
     };
@@ -67,8 +67,8 @@ const DocumentDetail: React.FC<RouteComponentProps<InterfaceProps>> = ({ match }
   };
 
   useEffect(() => {
-    fetchDetail()
-  }, ['1']);
+    fetchDetail(id)
+  }, [id]);
 
   return (
     <div className="document-detail-page">
