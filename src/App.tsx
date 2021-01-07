@@ -4,6 +4,7 @@ import Router from './router';
 import { getUserInfo } from '@services/user';
 import { UserInfoContext } from '@/context';
 import './App.css';
+import 'antd/dist/antd.min.css';
 
 function App() {
   const [userInfo, updateUserInfo] = useState({})
