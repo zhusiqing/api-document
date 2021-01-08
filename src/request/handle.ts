@@ -1,8 +1,10 @@
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 import { notification } from 'antd';
 import { ERR_CODE, NOT_LOGIN_PAGE } from '../utils/map';
+import observer from '../utils/observer';
 
-const routeChangeEvent = new Event('router:change');
+
+// const routeChangeEvent = new Event('router:change');
 const notificationKey = 'request';
 // const { REACT_APP_URL } = process.env
 
@@ -32,7 +34,8 @@ const http = (options: AxiosRequestConfig) :Promise<InterfaceResponseData> => in
   }
   const path = window.location.pathname
   if (code === ERR_CODE.NOT_LOGIN && !NOT_LOGIN_PAGE.includes(path)) {
-    window.dispatchEvent(routeChangeEvent)
+    // window.dispatchEvent(routeChangeEvent)
+    observer.emit('router:change', '/login')
   } else if (code !== 200) {
     notification.error({
       message: message || '服务出错！',

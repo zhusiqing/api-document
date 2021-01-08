@@ -20,3 +20,11 @@ code {
 #root {
   height: 100%;
 }
+
+/* #nprogress {
+  position: fixed;
+  top: 0;
+  height: 10px;
+  width: 100%;
+  z-index: 100;
+} */

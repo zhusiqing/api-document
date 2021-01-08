@@ -6,7 +6,7 @@ class Observer {
     this.handle = new Map()
   };
   // 注册监听的事件
-  on(type = '', callback: Function) {
+  on(type = '', callback: (...params: any[]) => void) {
     // 校验参数
     if (typeof type !== 'string') {
       const msg = `on type must is string, now is ${objToString(type)}`;
@@ -23,7 +23,7 @@ class Observer {
     this.handle.get(type)?.push(callback);
   };
   // 触发
-  emit (type = '', ...params: []) {
+  emit (type = '', ...params: any[]) {
     if (typeof type !== 'string') {
       const msg = `emit type must is string, now is ${objToString(type)}`;
       throw new Error(msg);
