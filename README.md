@@ -1,8 +1,6 @@
 
 <p align="center">
-  <a href="https://arya.lovejade.cn/" target="_blank">
-    <img width="100"src="https://raw.githubusercontent.com/nicejade/arya-jarvis/master/assets/images/logo.png">
-  </a>
+  <img width="100"src="https://raw.githubusercontent.com/nicejade/arya-jarvis/master/assets/images/logo.png">
 </p>
 
 <h1 align="center">文档</h1>
@@ -26,7 +24,8 @@
 
 ## 目标与哲学
 
-每次与后端进行接口文档协商，最后输出的接口文档总会有部分写的不清楚或者懒得写一些要求，于是打算通过表单的形式来限制一下
+每次与后端进行接口文档协商，最后输出的接口文档总会有部分写的不清楚或者懒得写一些要求，于是打算通过表单的形式来限制一下。
+因为工作的原因一直使用vue进行开发，但是本人想用react进行一些开发，所以这里使用react+typescript开发也是为了学习和实践。
 
 ## 先决条件
 
@@ -58,7 +57,7 @@ npm run build
 
 ## 屏幕截图
 
-包括 logo / demo 截图等。
+暂无
 
 ## 支持
 
@@ -66,7 +65,9 @@ npm run build
 
 ## 路线图
 
-如果您对将来的发行版有任何想法，最好在 README 文件中列出它们。
+- [ ] 先用基础的库做出并完善一个简易的文档功能
+- [ ] 采用一些额外的库进行优化
+- [ ] 目前使用的后台服务是自己简单搭建的，不适合公开，后面优化同时去掉一些敏感数据再进行公开
 
 ## 执照
 
