@@ -1,29 +1,23 @@
-$color: #555;
-
-@mixin page {
-  margin-top: 20px;
-  padding-top: 40px;
-  border-radius: 5px;
-  background: #ffffff;
-  min-height: 300px;
-  padding: 40px 40px 0;
-}
+@import '@/assets/scss/color.scss';
+@import '@/assets/scss/mixin.scss';
 
 .document-page {
   @include page;
   ul {
     list-style: none;
     padding: 20px 0;
-    color: $color;
+    color: $list;
     display: flex;
-    border: 1px solid #dddddd;
+    border: 1px solid $border;
     li {
       padding: 5px 20px;
-      // border: 1px dashed #ddd;
       margin: 0 15px;
       cursor: pointer;
       border: 2px solid;
-      border-image: linear-gradient(45deg, #2ef0e4, #f5a52e) 2;
+      border-image: linear-gradient(45deg, $blue, $orange) 2;
     }
+  }
+  .empty {
+    margin-top: 20px;
   }
 }

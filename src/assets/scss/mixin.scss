@@ -1,0 +1,7 @@
+@mixin page($min-height: 100px) {
+  margin-top: 20px;
+  border-radius: 5px;
+  background: #ffffff;
+  min-height: $min-height;
+  padding: 40px;
+}

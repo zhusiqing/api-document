@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { getDocumentList } from '@services/document';
 import Markdown from './Markdown';
+import Breadcrumb from './Breadcumbs';
 import './Detail.scss';
 interface InterfaceProps {
   id: string
@@ -71,10 +72,16 @@ const DocumentDetail: React.FC<RouteComponentProps<InterfaceProps>> = ({ match }
   }, [id]);
 
   return (
-    <div className="document-detail-page">
-      <Markdown value={detail}></Markdown>
-    </div>
-
+    <React.Fragment>
+      <Breadcrumb></Breadcrumb>
+      <div className="document-detail-page">
+        {
+          detail
+            ? <Markdown value={detail} />
+            : <p className="empty">暂无数据</p>
+        }
+      </div>
+    </React.Fragment>
   )
 };
 

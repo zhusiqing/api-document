@@ -19,17 +19,27 @@ const Document: React.FC = () => {
   };
   useEffect(() => {
     fetchTagList();
-  });
+  }, []);
   return (
     <div className="document-page">
       <h3>版本列表：</h3>
-      <ul>
-        {tagList.map((el:InterfaceTag) => (
-          <li key={el._id} onClick={() => {goToDocument(el._id);}}>
-            { el.name }
-          </li>
-        ))}
-      </ul>
+      {
+        tagList.length
+          ? (
+            <ul>
+              {
+                tagList.map((el:InterfaceTag) => (
+                  <li key={el._id} onClick={() => {goToDocument(el._id);}}>
+                    { el.name }
+                  </li>
+                ))
+              }
+            </ul>
+          )
+          : (
+            <p className="empty">暂无数据</p>
+          )
+      }
     </div>
   );
 };

@@ -1,12 +1,10 @@
-@mixin page {
-  margin-top: 20px;
-  border-radius: 5px;
-  background: #ffffff;
-  min-height: 300px;
-  padding: 40px;
-  box-sizing: content-box;
-}
+@import '@/assets/scss/mixin.scss';
 
 .document-detail-page {
   @include page;
+  .empty {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+  }
 }

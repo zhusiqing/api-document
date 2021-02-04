@@ -1,4 +1,6 @@
+@import '@/assets/scss/color.scss';
 $label-width: 6em;
+
 .form-page.form {
   width: 800px;
   margin: 0 auto;
@@ -20,7 +22,7 @@ $label-width: 6em;
   .add-box {
     display: flex;
     flex-wrap: wrap;
-    border: 1px dashed #ccc;
+    border: 1px dashed $border;
     margin-bottom: 20px;
     padding-top: 20px;
     .ant-space {
@@ -34,9 +36,9 @@ $label-width: 6em;
     }
     .btn-delete {
       cursor: pointer;
-      color: #999;
+      color: $gray;
       &:hover {
-        color: #333;
+        color: $black;
       }
     }
   }

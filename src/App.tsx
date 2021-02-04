@@ -6,14 +6,11 @@ import { UserInfoContext } from '@/context';
 import observer from './utils/observer'
 import './App.css';
 import 'antd/dist/antd.min.css';
+import '@/assets/scss/global.scss';
 
 function App() {
   const [userInfo, updateUserInfo] = useState({})
   const history = useHistory();
-  // window.addEventListener('router:change', e => {
-  //   console.log(e);
-  //   history.push('/login')
-  // });
   observer.on('router:change', (a) => {
     history.push(a)
   })
